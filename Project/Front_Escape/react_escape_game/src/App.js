@@ -1,11 +1,23 @@
-import HeaderComponent from './Components/HeaderComponent'
-import '../src/Styles/HeaderStyle.css'
 
+=======
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AccueilPage from '../src/Pages/AccueilPage';
+import '../src/Styles/Style.css';
+ main
 
-function App() {
+const App = () => {
   return (
-    < HeaderComponent />
-  )
-}
+
+
+
+    <BrowserRouter>
+    <Routes>
+      <Route path="accueil" element={<AccueilPage />} />
+    </Routes>
+    </BrowserRouter>
+  );
+};
+ main
 
 export default App;

@@ -1,0 +1,29 @@
+/* styles.css */
+.accueil {
+    display: flexbox;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: blueviolet;
+    background-size: cover;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    overflow: hidden;
+  }
+  
+  
+  button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .about-us,
+  .propose {
+    margin: 20px 0;
+  }
+  
