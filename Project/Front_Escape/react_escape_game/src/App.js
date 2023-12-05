@@ -1,5 +1,3 @@
-
-=======
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AccueilPage from '../src/Pages/AccueilPage';
@@ -10,7 +8,9 @@ const App = () => {
   return (
 
 
-
+  <div className="App">
+    <Footer />
+  </div>
     <BrowserRouter>
     <Routes>
       <Route path="accueil" element={<AccueilPage />} />
@@ -18,6 +18,4 @@ const App = () => {
     </BrowserRouter>
   );
 };
- main
-
 export default App;
