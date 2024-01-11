@@ -1,0 +1,98 @@
+#video-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+.Card-Detail h1{
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.Card-Detail {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin: 50px;
+    padding: 15px;
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #F8FCDA;
+    border-radius: 10px;
+    border: solid 1px #F8FCDA;
+    border-radius: 20px;
+    background: rgba(10, 10, 10, 0.39);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+
+}
+
+.Card-Detail .Res-Card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    
+  }
+
+.Detail-Card{
+    padding: 20px;
+
+
+}
+
+.Detail-images{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.Res-Card {
+    background-color: #454545;
+    border: 1px solid #F8FCDA;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: solid 1px #F8FCDA;
+    border-radius: 20px;
+    background: rgba(10, 10, 10, 0.39);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 999;
+  }
+.datepicker {
+    z-index: 999;
+}
+  
+  button {
+    background-color:#0b595d;
+    color: #F8FCDA;
+    font-weight:600;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: rgb(0, 0, 0);
+    color: rgb(246, 53, 0);
+    filter: drop-shadow(0 0 0.1rem rgba(182, 39, 0, 0.657));
+  }

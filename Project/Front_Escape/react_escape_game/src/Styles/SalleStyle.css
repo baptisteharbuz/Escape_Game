@@ -1,0 +1,83 @@
+.Card-Salle {
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-top: 100px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Cartes Globales */
+.Card-Border {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    padding: 15px;
+    border: solid 1px #F8FCDA;
+    border-radius: 20px;
+    background: rgba(10, 10, 10, 0.39);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-height: 250rem;
+}
+
+
+.Card-Cart {
+    height: 100%;
+}
+
+/* Slider */
+.Card-Pola {
+    overflow: hidden;
+}
+
+/* Images */
+img {
+    width: 30%;
+    z-index: 2;
+    mix-blend-mode:lighten
+}
+
+.Calendar {
+    border: solid black 1px;
+}
+
+.Card-Button{
+display: flex;
+justify-content: space-evenly;
+align-items:center;
+}
+
+.Container-Photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.Border-Photo{
+display: flex;
+justify-content:space-between;
+}
+
+.Card-Photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.PhotoPage{
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.Total-Container-Photo {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,41 @@
+.Carte-Connection {
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Carte-Connection button {
+    color: black;
+    background-color: #0b595d;
+}
+
+#Card {
+    background: rgba(10, 10, 10, 0.39) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.Card.card {
+    background-color: #004E52;
+}
+
+form {
+    color: #F8FCDA;
+}
+
+.button-add button {
+    background-color: none;
+    color: #F8FCDA;
+    font-weight: bold;
+    border: none;
+}
+
+.button-add button:hover {
+background-color: rgb(0, 0, 0);
+color: rgb(246, 53, 0);
+filter: drop-shadow(0 0 0.1rem rgba(182, 39, 0, 0.657));
+}

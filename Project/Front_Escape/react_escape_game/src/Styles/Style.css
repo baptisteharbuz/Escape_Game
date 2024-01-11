@@ -1,29 +1,163 @@
-/* styles.css */
 .accueil {
-    display: flexbox;
-    flex-wrap: wrap;
-  }
+  display: flexbox;
+  flex-wrap: wrap;
+}
+
+.img-accueil {
+  position: relative;
+
+}
+
+.fullscreen-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardsAccueil {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-nous,
+.card-vous {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  width: 400px;
+  height: 500px;
+  margin: 10px;
+  overflow: hidden;
+  border: solid 1px #F8FCDA;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0;
+  position: relative;
+}
+
+
+.card-nous {
+  background-image: url("../Assets/CHEZ_NOUS3.png");
+}
+
+.card-vous {
+  background-image: url("../Assets/CHEZ_VOUS3.png");
+}
+
+.card-nous:hover,
+.card-vous:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #5cebab82, 0 0 20px rgba(255, 255, 255, 0.33);
+}
+
+.card-nous::before,
+.card-vous::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.336);
+  transition: background-color 0.3s ease;
+}
+
+.card-nous:hover::before,
+.card-vous:hover::before {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.card-nous::after,
+.card-vous::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgba(195, 255, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+button {
+  display: flexbox;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #2A2E45;
+  color: #5CEBAA;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Propos-Div {
+  display: grid;
+  place-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.about-us,
+.propose {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #F8FCDA;
+}
+
+.propose {
+  display: grid;
+  place-items: center;
+  border: solid 1px white;
+  padding: 15px;
+  border-radius: 10px;
+  max-height: fit-content;
+  max-width: fit-content;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+textarea {
+  resize: none;
+  width: 1000px;
+  height: 200px;
+  max-width: 1000px;
+  max-height: 200px;
+  min-width: 100px;
+  min-height: 200px;
+  resize: none;
+  z-index: 1;
+}
+
+.Button-Reduc{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding: 20px;
   
-  .card {
-    background-color: blueviolet;
-    background-size: cover;
-    position: relative;
-    width: 300px;
-    height: 200px;
-    margin: 10px;
-    overflow: hidden;
-  }
-  
-  
-  button {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .about-us,
-  .propose {
-    margin: 20px 0;
-  }
-  
+}

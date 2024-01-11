@@ -1,4 +1,131 @@
-#Navbar {
-    background-color: blue;
-    color:blue;
+.navbar {
+  background-color: #004E52;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
+
+.navbar img {
+  width:70px;
+  height: 70px;
+}
+
+.navbar ul {
+
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.navbar li {
+  margin-right: 20px;
+  padding-left: 10px
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #F8FCDA;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #72e5af;
+  text-shadow: rgb(0, 0, 0) 1px 0 1px;
+}
+
+.navbar .user-links {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.navbar .user-links a {
+  margin-right: 20px;
+}
+.navbar .user-links:hover .dropdown-menu {
+  display: block;
+}
+
+.navbar .user-links {
+  margin-left: auto;
+}
+
+.navbar .dropdown-menu {
+  display: inline-block;
+  position: relative;
+  background-color: #004E52;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.navbar .dropdown-menu button,
+.navbar .dropdown-menu a {
+  color: #F8FCDA;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.navbar .dropdown-menu button:hover,
+.navbar .dropdown-menu a:hover {
+  background-color: #72e5af;
+  color: #004E52;
+}
+
+
+
+
+.dropbtn {
+  background-color: #004e5200;
+  color: #F8FCDA;
+  font-weight: bold;
+  border: none;
+  box-shadow: none !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  /* padding-right: 10px */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  /* background-color: #004e5294; */
+  min-width: 160px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  z-index: 100;
+  border-radius: 5px;
+  background-color: #004e52d7;
+}
+
+.dropdown-content a {
+  color: #F8FCDA;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  z-index: 100;
+}
+
+.dropdown-content a:hover {
+  text-shadow: rgb(0, 0, 0) 1px 0 1px;
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  z-index: 100;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #72e5af00;
+  color: #72e5af;
+  text-shadow: rgb(0, 0, 0) 1px 0 1px;
+}
+

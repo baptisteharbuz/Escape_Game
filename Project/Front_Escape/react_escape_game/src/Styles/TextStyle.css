@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "horizon";
+    src: url('../Assets/Fonts/horizon.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "horizon_outlined";
+    src: url('../Assets/Fonts/horizon_outlined.otf') format('opentype');
+}
+
+.TXT-titre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enigmes {
+    font-family: "horizon" !important;
+}
+
+.evadees {
+    font-family: "horizon_outlined" !important;
+}
+
+h1,
+h2{
+    font-family: "horizon" !important;
+}
+
+.enigmes,
+.evadees {
+    margin: 0;
+    position: relative;
+}
+
+.evadees::before {
+    content: '';
+    display: block;
+    height: 120px;
+    /* Ajuster la hauteur selon vos besoins */
+}
+
+.enigmes::before {
+    content: '';
+    display: block;
+    height: 0px;
+    /* Ajuster la hauteur selon vos besoins */
+}
+
+.Contact-Page h1,
+.titre {
+    font-family: "horizon" !important;
+    padding-top: 40px;
+    font-weight: bold;
+    color: #5cebca;
+    text-align: center;
+    font-size: 60px;
+    text-transform: uppercase;
+}
+
+.Contact-Page h1,
+.titre h1,
+.about-us h2,
+.accueil h1 {
+    color: transparent;
+    background-image: url('../Assets/Halo.gif');
+    background-clip: text;
+    transition: background-position 0.5s ease;
+}
+
+.accueil h1 {
+    color: transparent;
+    background-color: transparent;
+    transition: background-position 0.5s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    text-align: center;
+    font-size: 60px;
+}
+
+.Res-Card h3 {
+    color: #F8FCDA;
+}
+
+h3 {
+    margin: 50px 5;
+    padding: 50px;
+}
+
+.Card-Texte {
+    color: #F8FCDA;
+    text-align: right;
+}
+
+.Card-Texte h1 {
+    font-weight: bold;
+    color: #5cebca;
+    text-align: right;
+    font-size: 40px;
+}
+
+.Message-Incorrect p,
+.Message-Correct p {
+    font-weight: 700;
+    text-align: center;
+    color: #F8FCDA;
+    line-height: 1.5;
+}
+
+.footer p{
+    font-weight: 700;
+    text-align: center;
+    color: #F8FCDA;
+    line-height: 1.5;
+}
+
+.Card-Texte p{
+    text-align: center;
+    color: #F8FCDA;
+    line-height: 1.5;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.Button-Reduc p,
+.Reduc,
+.txt-conn,
+.propose button,
+.PageContact,
+.about-us p {
+    text-align: center;
+    color: #F8FCDA;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.txt-conn{
+    text-align: center;
+    color: #F8FCDA;
+    line-height: 1.5;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.Txt-SalleDetail h2 {
+    font-family: "horizon" !important;
+    text-align: center;
+}
+
+.datepicker{
+    color: black;
+}
+
+.people {
+    color: black;
+}
