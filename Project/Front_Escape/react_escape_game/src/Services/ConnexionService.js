@@ -1,43 +1,81 @@
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function fetchUtilisateur() {
-  return axios.get("http://127.0.0.1:3000/utilisateur");
+  return axios.get(`${API_URL}utilisateur`);
 }
 
 function fetchUtilisateurById(id_utilisateur) {
-  return axios.get(`http://127.0.0.1:3000/utilisateur/${id_utilisateur}`);
+  return axios.get(`${API_URL}utilisateur/${id_utilisateur}`);
 }
 
-function addUtilisateur(utilisateur) {
-  return axios.post("http://127.0.0.1:3000/utilisateur", utilisateur, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
+const login = async (utilisateur) => {
+  try {
+    const response = await axios.post(`${API_URL}/utilisateur/login`, utilisateur);
+    localStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la connexion', error);
+    throw error;
+  }
+};
 
-function login(utilisateur) {
-    return axios.post("http://127.0.0.1:3000/utilisateur/login",utilisateur, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+const logout = () => {
+  localStorage.removeItem('token');
+  return axios.post(`${API_URL}/utilisateur/logout`);
+};
+
+const register = async (utilisateur) => {
+  try {
+    const response = await axios.post(`${API_URL}/utilisateur/register`, utilisateur);
+    localStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de l’ajout d’un utilisateur', error);
+    throw error;
+  }
+};
+
+const deleteUtilisateur = async (id_utilisateur) => {
+  try {
+    const response = await axios.delete(`${API_URL}/utilisateur/${id_utilisateur}`);
+    localStorage.removeItem('token');
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la suppression de l’utilisateur', error);
+    throw error;
+  }
+};
+
+const modifierUtilisateur = async (id_utilisateur, userData) => {
+  try {
+    const response = await axios.put(`${API_URL}/utilisateur/modification/${id_utilisateur}`, userData);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la modification de l’utilisateur', error);
+    throw error;
+  }
+};
+
+const modifierMotDePasse = async (id_utilisateur, nouveauMotDePasse) => {
+  try {
+    const response = await axios.put(`${API_URL}/utilisateur/changerMotDePasse/${id_utilisateur}`, {
+      nouveauMotDePasse
     });
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la modification du mot de passe', error);
+    throw error;
   }
-
-  function logout() {
-    return axios.post("http://127.0.0.1:3000/utilisateur/logout")
-      .then(response => response.data)
-      .catch(error => {
-        console.error('Erreur lors de la déconnexion', error);
-        throw error;
-      });
-  }
-
+};
 
 export default {
   fetchUtilisateur,
   fetchUtilisateurById,
-  addUtilisateur,
   login,
-  logout
+  register,
+  logout,
+  deleteUtilisateur,
+  modifierUtilisateur,
+  modifierMotDePasse
 };

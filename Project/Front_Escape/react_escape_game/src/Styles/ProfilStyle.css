@@ -1,0 +1,99 @@
+.container-profil {
+    /* background: linear-gradient(rgba(0, 0, 0, 0.387), rgba(0, 0, 0, 0.392)), url(../../Assets/Images/coffee-texture-background_resultat.webp); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+
+    h1 {
+        color: #FFE1CB;
+    }
+
+    .containeur-card-profil {
+        position: relative;
+        background: rgba(209, 160, 130, 0.096);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        box-shadow: rgba(0, 0, 0, 0.733) 0px 50px 100px -20px, rgba(0, 0, 0, 0.701) 0px 30px 60px -30px, rgba(0, 0, 0, 0.225) 0px -2px 6px 0px inset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+
+        .card-profil {
+            color: #FFE1CB;
+            width: 40vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 2rem;
+
+            h3 {
+                margin: 0 0 1rem 0
+            }
+
+            button {
+                /* @include beige-border; */
+                width: 15rem;
+                height: 2rem;
+                border-radius: 1rem;
+                font-weight: 800;
+                margin-top: 1rem;
+                z-index: 1;
+            }
+
+            input {
+                z-index: 1;
+            }
+
+            .button-password-change {
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    .button-profil {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 5rem;
+        margin: 2rem 0 2rem 0;
+
+        button {
+            /* @include brown-border; */
+            width: 15rem;
+            height: 2rem;
+            border-radius: 1rem;
+            font-weight: 800;
+
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container-profil {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container-form-profil {}
+
+    .containeur-card-profil {
+        width: 20rem;
+
+        input {
+            width: 100%;
+        }
+    }
+
+}

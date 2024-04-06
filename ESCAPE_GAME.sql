@@ -65,20 +65,20 @@ INSERT INTO `Salarie` (`id_salarie`, `nom`, `prenom`, `adresse`, `tel`, `email`,
 --
 
 CREATE TABLE `Salle` (
-  `id_salle` int(11) NOT NULL,
-  `titre` varchar(45) DEFAULT NULL,
-  `synopsis` longtext,
-  `objectif` longtext,
-  `photo1` longtext,
-  `photo2` longtext,
-  `Photo3` longtext,
-  `dure` time DEFAULT NULL,
-  `prix` int(11) DEFAULT NULL,
-  `dispo_de` time DEFAULT NULL,
-  `dispo_jusqua` time DEFAULT NULL,
-  `is_chez_vous` tinyint(1) DEFAULT NULL,
-  `difficulte` enum('Facile','Intermédiaire','Difficile') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_salle` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `titre` varchar(45) NOT NULL,
+  `synopsis` longtext NOT NULL,
+  `objectif` longtext NOT NULL,
+  `photo1` longtext DEFAULT NULL,
+  `photo2` longtext DEFAULT NULL,
+  `Photo3` longtext ,
+  `dure` time NOT NULL,
+  `prix` int(11) NOT NULL,
+  `dispo_de` time NOT NULL,
+  `dispo_jusqua` time NOT NULL,
+  `is_chez_vous` tinyint(1) NOT NULL,
+  `difficulte` enum('Facile','Intermédiaire','Difficile') NOT NULL
+);
 
 --
 -- Déchargement des données de la table `Salle`
@@ -190,3 +190,42 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+INSERT INTO `Salle` (`titre`, `synopsis`, `objectif`, `photo1`, `photo2`,
+`Photo3`, `dure`, `prix`, `dispo_de`, `dispo_jusqua`, `is_chez_vous`, `difficulte`) VALUES
+('Trône de Fer', 'Synopsis', 'objectif', 'Photo1', 'Photo2', 'Photo3', '01:30:00',
+ 100, '09:00:00', '00:00:00', 0, 1),
+
+
+
+
+CREATE TABLE `Utilisateur` (
+  `id_utilisateur` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `nom` varchar(45) NOT NULL,
+  `prenom` varchar(45) NOT NULL,
+  `adresse` varchar(150) DEFAULT NULL,
+  `tel` int(10) DEFAULT NULL,
+  `email` varchar(30) NOT NULL,
+  `mdp` varchar(100) UNIQUE KEY NOT NULL
+);
+
+
+INSERT INTO `Utilisateur` (`nom`, `prenom`, `adresse`, `tel`, `email`, `mdp`) VALUES
+('nom', 'prenom', '1 rue du test', 0123456789, 'contact@test.fr', 'MDP123');
+
+
+
+
+'
+
+
+CREATE TABLE `Panier` (
+  `id_panier` int(11) AUTO_INCREMENT PRIMARY_KEY NOT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `id_salle` int(11) DEFAULT NULL,
+  `reserve` datetime DEFAULT NULL
+);

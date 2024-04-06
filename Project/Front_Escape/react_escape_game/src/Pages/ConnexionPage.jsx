@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import '../Styles/ConnexionStyle.css';
 import '../Styles/App.css';
 import AuthContext from '../Context/AuthContext';
-
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [utilisateur, setUtilisateur] = useState({
@@ -25,14 +25,20 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await ConnexionService.login(utilisateur);
-      console.log(response);
-      if (response.status === 200) {
-        setIsAuthenticated(true)
-        setUser(response.data)
-        navigate(`/panier`);
+      console.log(response)
+      if (response && response.access_token) {
+        setIsAuthenticated(true);
+        setUser(response.user);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        navigate("/accueil");
+        toast.success(`Bonjour ${response.user.prenom}`)
       }
     } catch (error) {
-      console.error('Échec de la connexion', error);
+      if (!utilisateur.mdp) {
+        toast.error("Le mot de passe n'est pas correct")
+      } else {
+        console.error('Échec de la connexion', error);
+      }
     }
   };
 

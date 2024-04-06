@@ -7,11 +7,6 @@ const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleDeconnexion = () => {
-    setIsAuthenticated(false);
-    navigate('/connexion');
-  };
-
   return (
     <nav className="navbar">
       <ul>
@@ -31,11 +26,11 @@ const Navbar = () => {
       </ul>
       <div className="user-links">
         <Link to="/panier">Panier</Link>
-        
+
         {/*Si connecté*/}
         {isAuthenticated ? (
           <div className="dropdown">
-            <button className="dropbtn" onClick={handleDeconnexion}>Déconnexion</button>
+            <Link to="/profil">Profil</Link>
           </div>
         ) : (
           <div className="dropdown">
