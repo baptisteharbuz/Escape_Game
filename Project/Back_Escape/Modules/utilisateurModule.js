@@ -124,12 +124,13 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.use(checkTokenMiddleware);
+// router.use(checkTokenMiddleware);
 
 
 // SUPPRESSION
 router.delete("/:id_utilisateur", async (req, res) => {
     try {
+        console.log(req.params)
         const result = await utilisateurService.deleteUtilisateur(req.params.id_utilisateur);
         res.status(200).json(result);
     } catch (err) {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConnexionService from '../Services/ConnexionService';
 import Form from 'react-bootstrap/Form';
@@ -7,7 +7,6 @@ import '../Styles/ConnexionStyle.css';
 import '../Styles/App.css';
 import AuthContext from '../Context/AuthContext';
 import { toast } from 'react-toastify';
-import { getToken, getUser } from '../Services/LocalStorage';
 
 const Register = () => {
   const { setIsAuthenticated, setUser } = useContext(AuthContext);
@@ -34,43 +33,25 @@ const Register = () => {
       toast.error("Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.");
       return;
     }
-
-    try {
-      const response = await ConnexionService.register(utilisateur);
-
-      if (response && response.success) {
+    if (utilisateur.nom && utilisateur.prenom && utilisateur.email && utilisateur.mdp) {
+      try {
+        const response = await ConnexionService.register(utilisateur);
         setIsAuthenticated(true);
-        setUser({ ...utilisateur, id: response.data.id });
-
+        setUser(utilisateur);
         navigate(`/profil`);
         toast.success("Compte créé avec succès !");
-      } else {
-        // Gestion des erreurs avec codes HTTP
-        if (response.status === 400) {
-          console.log(setUser + "setUser")
-          console.log(...utilisateur + "...utilisateur")
-          console.log(response + "response")
-          toast.error("Le mot de passe est invalide.");
-        } else if (response.status === 409) {
-          toast.error("L'adresse e-mail est déjà utilisée par un autre compte.");
+      } catch (e) {
+        console.error("Erreur lors de l'inscription:", e);
+        if (e.response && e.response.data && e.response.data.message) {
+          toast.error(e.response.data.message);
         } else {
           toast.error("Une erreur est survenue lors de la création du compte.");
         }
       }
-    } catch (e) {
-      console.error('Erreur lors de la création de compte', e);
-      toast.error("Une erreur est survenue lors de la création du compte.");
+    } else {
+      toast.error("Veuillez remplir tous les champs du formulaire.");
     }
   };
-
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      setIsAuthenticated(true);
-      setUser(getUser());
-    }
-  }, []);
-
 
   return (
     <div>

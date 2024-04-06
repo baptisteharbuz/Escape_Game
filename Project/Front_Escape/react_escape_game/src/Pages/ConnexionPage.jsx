@@ -22,22 +22,25 @@ const Login = () => {
     setUtilisateur({ ...utilisateur, [name]: value });
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     try {
-      const response = await ConnexionService.login(utilisateur);
+      const response = await ConnexionService.login({
+        email: utilisateur.email,
+        mdp: utilisateur.mdp
+      });
       console.log(response)
-      if (response && response.access_token) {
+      if (response.access_token && response.isLoggedIn) {
         setIsAuthenticated(true);
         setUser(response.user);
-        localStorage.setItem('user', JSON.stringify(response.user));
         navigate("/accueil");
         toast.success(`Bonjour ${response.user.prenom}`)
       }
     } catch (error) {
-      if (!utilisateur.mdp) {
-        toast.error("Le mot de passe n'est pas correct")
+      if (error.response && error.response.status === 401) {
+        toast.error("Identifiant ou mot de passe incorect");
       } else {
-        console.error('Échec de la connexion', error);
+        toast.error("Une erreur est survenue lors de la connexion");
       }
     }
   };

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../Services/AxiosConfig';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function fetchUtilisateur() {
@@ -28,18 +28,16 @@ const logout = () => {
 const register = async (utilisateur) => {
   try {
     const response = await axios.post(`${API_URL}/utilisateur/register`, utilisateur);
-    localStorage.setItem('token', response.data.token);
-    return response.data;
+    return { data: response.data, error: null };
   } catch (error) {
     console.error('Erreur lors de l’ajout d’un utilisateur', error);
-    throw error;
+    return { data: null, error: error.response };
   }
 };
 
 const deleteUtilisateur = async (id_utilisateur) => {
   try {
     const response = await axios.delete(`${API_URL}/utilisateur/${id_utilisateur}`);
-    localStorage.removeItem('token');
     return response.data;
   } catch (error) {
     console.error('Erreur lors de la suppression de l’utilisateur', error);

@@ -10,8 +10,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul>
-        <a href="https://fr.dreamstime.com/photos-stock-poule-image13549723" target="_blank">
-          <img src="https://cdn.discordapp.com/attachments/1151134832043229215/1182615313196527636/logo-removebg-preview.png?ex=65855756&is=6572e256&hm=c1266d72963b709654cb2801c868298ce709ef5a3911ece323ffcb84413196f0&" alt="Logo Poule" href="https://fr.dreamstime.com/photos-stock-poule-image13549723" target="_blank" /></a>
+        <img src="https://cdn.discordapp.com/attachments/1151134832043229215/1182615313196527636/logo-removebg-preview.png?ex=662239d6&is=660fc4d6&hm=4f4a10b37b46348beed71578f84f7a4ff40ef2648e30a2faf2b872fa93a95987&" alt="Logo Escape Game" />
         <li><Link to='/accueil'>Accueil</Link></li>
         <div className="dropdown">
           <button className="dropbtn">Nos Services</button>

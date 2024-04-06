@@ -11,7 +11,6 @@ import Card from 'react-bootstrap/Card';
 import Confirmation from "../Components/ConfirmationComponent";
 import VerifyPasswordModal from "../Components/PasswordVerificationComponent";
 import ChangePasswordModal from "../Components/ChangePasswordComponent";
-import { setToken, getToken, getUser, removeToken } from '../Services/LocalStorage';
 
 const Profil = () => {
     const { setIsAuthenticated, user, setUser } = useContext(AuthContext);
@@ -23,17 +22,17 @@ const Profil = () => {
     const [nom, setNom] = useState(user.nom || "");
     const [prenom, setPrenom] = useState(user.prenom || "");
     const [email, setEmail] = useState(user.email || "");
-    const [adresse, setAdresse] = useState(user.adresse || "");
-    const [telephone, setTelephone] = useState(user.tel || "");
 
+    // const handleChange = (event) => {
+    //     const { name, value } = event.currentTarget;
+    //     if (name === "nom") setNom(value);
+    //     else if (name === "prenom") setPrenom(value);
+    //     else if (name === "email") setEmail(value);
+    //     else setUtilisateur(prevState => ({ ...prevState, [name]: value }));
+    // };
     const handleChange = (event) => {
         const { name, value } = event.currentTarget;
-        if (name === "nom") setNom(value);
-        else if (name === "prenom") setPrenom(value);
-        else if (name === "email") setEmail(value);
-        if (name === "adresse") setAdresse(value);
-        else if (name === "telephone") setTelephone(value);
-        else setUtilisateur(prevState => ({ ...prevState, [name]: value }));
+        setUtilisateur(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleModification = async (e) => {
@@ -43,7 +42,7 @@ const Profil = () => {
             return;
         }
         // Utilisation de l'objet existant si les clés correspondent
-        const userData = { nom, prenom, email, adresse, telephone };
+        const userData = { nom, prenom, email };
 
         try {
             await ConnexionService.modifierUtilisateur(user.id_utilisateur, userData);
@@ -59,10 +58,11 @@ const Profil = () => {
         }
     };
 
-    const handleLogout = () => {
-        removeToken();
-        setUser(null);
+
+    const handleDeconnexion = () => {
         setIsAuthenticated(false);
+        localStorage.removeItem('token');
+        navigate("/connexion");
     };
 
     const handleSuppression = async () => {
@@ -72,6 +72,7 @@ const Profil = () => {
     const confirmSuppression = async () => {
         try {
             await ConnexionService.deleteUtilisateur(user.id_utilisateur);
+            console.log(user)
             toast.success(`${user.nom} Votre profil a bien été supprimé`);
             setIsAuthenticated(false);
             navigate("/accueil");
@@ -97,8 +98,6 @@ const Profil = () => {
         setNom(user.nom);
         setPrenom(user.prenom);
         setEmail(user.email);
-        setAdresse(user.adresse);
-        setTelephone(user.telephone);
     }, [user]);
 
     return (
@@ -110,19 +109,19 @@ const Profil = () => {
                         <h1 style={{ textAlign: 'center' }}>Mon Profil</h1>
                         <Form.Group className="mb-4" controlId="formBasicNom">
                             <Form.Label className='txt-conn'>Nom :</Form.Label>
-                            <Form.Control type="text" name="nom" value={nom} onChange={handleChange} />
+                            <Form.Control type="text" id="nom" name="Nom" required onChange={(e) => setNom(e.target.value)} value={nom} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPrenom">
                             <Form.Label className='txt-conn'>Prénom :</Form.Label>
-                            <Form.Control type="text" name="prenom" value={prenom} onChange={handleChange} />
+                            <Form.Control type="text" id="prenom" name="Prenom" required onChange={(e) => setPrenom(e.target.value)} value={prenom} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicEmail">
                             <Form.Label className='txt-conn'>Email :</Form.Label>
-                            <Form.Control type="email" name="email" value={email} onChange={handleChange} />
+                            <Form.Control type="email" id="email" name="Mail" required onChange={(e) => setEmail(e.target.value)} value={email} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPassword">
                             <Form.Label className='txt-conn'>Mot de Passe :</Form.Label>
-                            <Form.Control type="password" name="actualPassword" placeholder="Mot de passe actuel" value={utilisateur.actualPassword} onChange={handleChange} />
+                            <Form.Control type="password" id="password" name="actualPassword" placeholder="Mot de passe actuel" onChange={handleChange} value={utilisateur.actualPassword} />
                         </Form.Group>
                         <div className="button-add" style={{ display: 'flex', justifyContent: 'center' }}>
                             <button type="submit">Valider les changements</button>
@@ -131,7 +130,7 @@ const Profil = () => {
                 </Card.Body>
                 <button className="button-password-change" onClick={() => setShowPasswordVerification(true)}>Changer de mot de passe</button>
                 <div className="button-profil">
-                    <button onClick={handleLogout}>Se déconnecter</button>
+                    <button onClick={handleDeconnexion}>Se déconnecter</button>
                     <button onClick={handleSuppression}>Supprimer mon compte</button>
                 </div>
             </Card>

@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthContext from '../src/Context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 // STYLES
@@ -30,6 +30,14 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (token && user) {
+      setIsAuthenticated(true);
+      setUser(user);
+    }
+  }, []);
 
   return (
     <>
