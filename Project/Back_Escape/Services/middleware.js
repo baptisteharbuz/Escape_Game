@@ -11,23 +11,28 @@ const extractBearerToken = headerValue => {
 }
 
 // Vérification du token
-const checkTokenMiddleware = (req, res, next) => {
-    const token = req.headers.authorization && extractBearerToken(req.headers.authorization)
+const checkTokenMiddleware = async (req, res, next) => {
+    const token = req.headers.authorization && extractBearerToken(req.headers.authorization);
 
-    // Présence d'un token
     if (!token) {
-        return res.status(401).json({ message: 'Token inexistant' })
+        return res.status(401).json({ message: 'Token inexistant' });
     }
 
-    // Véracité du token
-    jwt.verify(token, jwtSecret, (err) => {
-        if (err) {
-            res.status(401).json({ message: 'Error. Mauvais token' })
-        } else {
-            return next()
+    try {
+        const decodedToken = await jwt.verify(token, jwtSecret);
+        req.user = decodedToken.user;
+        next();
+    } catch (err) {
+        let message = 'Error. Mauvais token';
+        if (err instanceof jwt.TokenExpiredError) {
+            message = 'Error. Token expiré';
+        } else if (err instanceof jwt.JsonWebTokenError) {
+            message = 'Error. Token invalide';
         }
-    })
-}
+        res.status(401).json({ message });
+    }
+};
+
 
 module.exports = {
     checkTokenMiddleware

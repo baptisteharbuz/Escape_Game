@@ -45,9 +45,13 @@ const deleteUtilisateur = async (id_utilisateur) => {
   }
 };
 
-const modifierUtilisateur = async (id_utilisateur, userData) => {
+const modifierUtilisateur = async (id_utilisateur, userData, actualPassword) => {
   try {
-    const response = await axios.put(`${API_URL}/utilisateur/modification/${id_utilisateur}`, userData);
+    const body = {
+      ...userData,
+      motDePasseActuel: actualPassword,
+    };
+    const response = await axios.put(`${API_URL}/utilisateur/modification/${id_utilisateur}`, body);
     return response.data;
   } catch (error) {
     console.error('Erreur lors de la modification de l’utilisateur', error);

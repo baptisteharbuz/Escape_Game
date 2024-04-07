@@ -31,6 +31,7 @@ const Login = () => {
       });
       console.log(response)
       if (response.access_token && response.isLoggedIn) {
+        localStorage.setItem('token', response.access_token);
         setIsAuthenticated(true);
         setUser(response.user);
         navigate("/accueil");

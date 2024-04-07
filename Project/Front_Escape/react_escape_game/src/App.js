@@ -31,12 +31,23 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (token && user) {
-      setIsAuthenticated(true);
-      setUser(user);
-    }
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      const userStored = localStorage.getItem('user');
+      if (token && userStored) {
+        const user = JSON.parse(userStored);
+        setIsAuthenticated(true);
+        setUser(user);
+      } else {
+        setIsAuthenticated(false);
+        setUser({});
+      }
+    };
+    checkAuth();
+    // Vérifiez l'authentification toutes les minutes pour gérer l'expiration du token
+    const interval = setInterval(checkAuth, 60000);
+
+    return () => clearInterval(interval); // Nettoyez l'intervalle quand le composant est démonté
   }, []);
 
   return (

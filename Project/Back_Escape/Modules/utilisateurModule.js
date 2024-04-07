@@ -55,7 +55,7 @@ router.post('/register', (req, res) => {
 });
 
 // CONNEXION
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
     const user = req.body;
     if (!user.email || !user.mdp) {
         return res.status(400).json({ message: "Veuillez renseigner un email et un mot de passe" });
@@ -144,7 +144,6 @@ router.put("/modification/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { motDePasseActuel, ...userUpdates } = req.body;
-        console.log(req.body)
         const utilisateurActuel = await utilisateurService.fetchUtilisateurByID(id);
         if (!utilisateurActuel) {
             return res.status(404).json({ message: "Utilisateur non trouvé" });
@@ -160,6 +159,7 @@ router.put("/modification/:id", async (req, res) => {
         return res.status(500).json({ message: "Une erreur est survenue" });
     }
 });
+
 
 
 

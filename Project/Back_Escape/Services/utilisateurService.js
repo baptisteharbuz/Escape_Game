@@ -2,8 +2,8 @@ const conn = require("./database");
 
 const fetchUtilisateur = () => {
     return new Promise((resolve, reject) => {
-        let sql = `SELECT id_utilisateur, email, mdp FROM utilisateur;`;
-        let query = conn.query(sql, (err, result, field) => {
+        const sql = `SELECT id_utilisateur, email, mdp FROM utilisateur;`;
+        const query = conn.query(sql, (err, result, field) => {
             if (err) return reject(err);
             resolve(result);
         });
@@ -12,7 +12,7 @@ const fetchUtilisateur = () => {
 
 const fetchUtilisateurByID = (id) => {
     return new Promise((resolve, reject) => {
-        let sql = `SELECT id_utilisateur, email, mdp FROM utilisateur WHERE id_utilisateur = ?;`;
+        const sql = `SELECT id_utilisateur, email, mdp FROM utilisateur WHERE id_utilisateur = ?;`;
         conn.query(sql, [id], (err, result) => {
             if (err) return reject(err);
             resolve(result[0]);
@@ -56,18 +56,13 @@ const deleteUtilisateur = async (id) => {
 
 // MODIFICATIONS
 const modificationProfil = async (id, utilisateur) => {
-    try {
-        const sql = `UPDATE Utilisateur SET nom = ?, prenom = ?, email = ? WHERE id_utilisateur = ?`;
-        const result = await conn.query(sql, [utilisateur.nom, utilisateur.prenom, utilisateur.email, id]);
-
-        if (!result.affectedRows || result.affectedRows === 0) {
-            throw new Error('Aucune modification effectuée : utilisateur non trouvé.');
-        }
-        return { message: "Profil utilisateur mis à jour avec succès", affectedRows: result.affectedRows };
-    } catch (error) {
-        console.error('Erreur lors de la modification de l’utilisateur', error);
-        throw error; // Propager l'erreur pour gestion ultérieure
+    const sql = `UPDATE utilisateur SET nom = ?, prenom = ?, email = ? WHERE id_utilisateur = ?`;
+    const result = await conn.query(sql, [utilisateur.nom, utilisateur.prenom, utilisateur.email, id]);
+    // Gestion des erreurs
+    if (!result) {
+        throw new Error('Utilisateur non trouvé ou une erreur est survenue lors de la modification.');
     }
+    return result.values;
 };
 
 

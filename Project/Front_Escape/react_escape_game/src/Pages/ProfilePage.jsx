@@ -41,16 +41,25 @@ const Profil = () => {
             toast.error("Veuillez entrer votre mot de passe actuel pour confirmer les modifications.");
             return;
         }
-        // Utilisation de l'objet existant si les clés correspondent
-        const userData = { nom, prenom, email };
+        // Préparation de userData avec les champs spécifiques à modifier
+        const userData = {
+            nom: utilisateur.nom,
+            prenom: utilisateur.prenom,
+            email: utilisateur.email,
+        };
 
         try {
-            await ConnexionService.modifierUtilisateur(user.id_utilisateur, userData);
+            // Appel à la fonction de service avec l'ID utilisateur, userData, et actualPassword
+            // À ajuster en fonction de la signature exacte de votre fonction de service
+            await ConnexionService.modifierUtilisateur(user.id_utilisateur, userData, utilisateur.actualPassword);
             toast.success("Votre profil a bien été modifié.");
 
-            // Mise à jour simplifiée de l'utilisateur
+            // Mise à jour de l'utilisateur dans le contexte/authentification locale
+            // Notez que cela ne mettra à jour que nom, prenom, et email dans le contexte local
+            // et ne concerne pas le mot de passe ou d'autres champs non inclus dans userData
             setUser(prevUser => ({ ...prevUser, ...userData }));
         } catch (error) {
+            // Gestion des erreurs basée sur le statut de la réponse, etc.
             const message = error.response?.status === 401
                 ? "Votre session a expiré. Veuillez vous reconnecter."
                 : `Erreur lors de la modification de votre profil: ${error.message}`;
@@ -109,19 +118,19 @@ const Profil = () => {
                         <h1 style={{ textAlign: 'center' }}>Mon Profil</h1>
                         <Form.Group className="mb-4" controlId="formBasicNom">
                             <Form.Label className='txt-conn'>Nom :</Form.Label>
-                            <Form.Control type="text" id="nom" name="Nom" required onChange={(e) => setNom(e.target.value)} value={nom} />
+                            <Form.Control type="text" name="Nom" required onChange={(e) => setNom(e.target.value)} value={nom} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPrenom">
                             <Form.Label className='txt-conn'>Prénom :</Form.Label>
-                            <Form.Control type="text" id="prenom" name="Prenom" required onChange={(e) => setPrenom(e.target.value)} value={prenom} />
+                            <Form.Control type="text" name="Prenom" required onChange={(e) => setPrenom(e.target.value)} value={prenom} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicEmail">
                             <Form.Label className='txt-conn'>Email :</Form.Label>
-                            <Form.Control type="email" id="email" name="Mail" required onChange={(e) => setEmail(e.target.value)} value={email} />
+                            <Form.Control type="email" name="Mail" required onChange={(e) => setEmail(e.target.value)} value={email} />
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPassword">
                             <Form.Label className='txt-conn'>Mot de Passe :</Form.Label>
-                            <Form.Control type="password" id="password" name="actualPassword" placeholder="Mot de passe actuel" onChange={handleChange} value={utilisateur.actualPassword} />
+                            <Form.Control type="password" name="actualPassword" placeholder="Mot de passe actuel" onChange={handleChange} value={utilisateur.actualPassword} />
                         </Form.Group>
                         <div className="button-add" style={{ display: 'flex', justifyContent: 'center' }}>
                             <button type="submit">Valider les changements</button>
